@@ -26,7 +26,7 @@ public class ErrorFilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
 
         return null;
     }

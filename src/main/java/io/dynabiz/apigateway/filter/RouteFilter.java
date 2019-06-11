@@ -23,8 +23,8 @@ public class RouteFilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
-        RequestContext context = RequestContext.getCurrentContext();
+    public Object run() {
+
         return null;
     }
 

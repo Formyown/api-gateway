@@ -1,14 +1,15 @@
 package io.dynabiz.apigateway.filter;
 
-import com.as.exception.TokenException;
-import com.as.web.context.ServiceContextHolder;
-import com.as.web.response.GeneralResponse;
-import com.as.web.security.core.accesstoken.AccessTokenManager;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.dynabiz.spring.web.security.core.accesstoken.AccessTokenManager;
+import org.dynabiz.std.exception.TokenException;
+import org.dynabiz.web.context.ServiceContextHolder;
+import org.dynabiz.web.response.GeneralResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +36,7 @@ public class PreFilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
 
         try{
             ServiceContextHolder.start();
@@ -52,7 +53,7 @@ public class PreFilter extends ZuulFilter {
                 RequestContext ctx = RequestContext.getCurrentContext();
                 ctx.remove("error.status_code");
                 try {
-                    ctx.setResponseBody(objectMapper.writeValueAsString(new GeneralResponse(TokenException.notFound())));
+                    ctx.setResponseBody(objectMapper.writeValueAsString(new GeneralResponse(TokenException.TOKEN_NOT_FOUND)));
                 } catch (JsonProcessingException e1) {
                     e1.printStackTrace();
                 }

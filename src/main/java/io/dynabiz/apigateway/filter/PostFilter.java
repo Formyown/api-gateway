@@ -1,7 +1,8 @@
 package io.dynabiz.apigateway.filter;
 
-import com.as.web.context.ServiceContextHolder;
+
 import com.netflix.zuul.ZuulFilter;
+import org.dynabiz.web.context.ServiceContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
